@@ -73,22 +73,13 @@ The optimal control $C^*(t)$ minimizes $J(C)$.
 2. Solve the **state equation** for $u_i$.  
 3. Solve the **adjoint equation** for $w_i$.  
 4. Compute intermediate control:
-
-   $$
-   \tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i\,dx
-   $$
+   $\tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i\,dx$
 
 5. Update the control:
-
-   $$
-   C_{i+1} = \beta C_i + (1 - \beta)\tilde{C}, \quad \beta \in [0,1)
-   $$
+   $C_{i+1} = \beta C_i + (1 - \beta)\tilde{C}, \quad \beta \in [0,1)$
 
 6. Repeat until convergence:
-
-   $$
-   \|C_{i+1} - C_i\| < \text{TOL}
-   $$
+   $\|C_{i+1} - C_i\| < \text{TOL}$
 
 This iterative scheme is guaranteed to converge for sufficiently large $\alpha$.
 

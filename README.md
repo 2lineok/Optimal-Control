@@ -8,7 +8,7 @@ This repository provides MATLAB codes and data instructions for reproducing the 
 
 ## 📘 Overview
 
-This project develops a **reaction-diffusion PDE-based optimal control framework** to model and optimize anti-amyloid beta (Aβ) treatment strategies in Alzheimer’s disease (AD). The method integrates:
+This project develops a **reaction-diffusion PDE-based optimal control framework** to model and optimize anti-amyloid beta (Aβ) treatment strategies in Alzheimer's disease (AD). The method integrates:
 
 - **Spatially explicit PDE modeling** of amyloid-beta plaque dynamics,  
 - **Finite Element Method (FEM)** for numerical solution,  
@@ -23,11 +23,11 @@ The framework computes optimal dosing schedules that minimize amyloid plaque bur
 
 ### Governing Equation
 
-The amyloid-beta (Aβ) concentration \( u(x, t) \) satisfies:
+The amyloid-beta (Aβ) concentration $u(x, t)$ satisfies:
 
 $$
-u_t - \nabla \cdot (D(x) \nabla u) = \rho (1 - u) u - C(t) u, 
-\quad (x, t) \in \Omega \times (0, T)
+u_t - \nabla \cdot (D(x)\nabla u) = \rho (1 - u)u - C(t)u, 
+\quad (x,t) \in \Omega \times (0,T)
 $$
 
 with no-flux boundary conditions:
@@ -39,7 +39,7 @@ $$
 and an initial condition derived from PET imaging data:
 
 $$
-u(x, 0) = u_0(x)
+u(x,0) = u_0(x)
 $$
 
 ### Objective Function
@@ -47,15 +47,15 @@ $$
 The optimization seeks to minimize the functional:
 
 $$
-J(C) = \int_0^T \left( \int_\Omega u_C(x, t) \, dx + \alpha C^2(t) \right) dt
+J(C) = \int_0^T \left( \int_\Omega u_C(x,t)\,dx + \alpha C^2(t) \right) dt
 $$
 
 where:
 
-- \( u_C \): solution under control function \( C(t) \),  
-- \( \alpha \): penalty coefficient weighting side-effect cost.
+- $u_C$: solution under control function $C(t)$  
+- $\alpha$: penalty coefficient controlling side-effect weight
 
-The optimal control \( C^*(t) \) minimizes \( J(C) \).
+The optimal control $C^*(t)$ minimizes $J(C)$.
 
 ---
 
@@ -69,29 +69,28 @@ The optimal control \( C^*(t) \) minimizes \( J(C) \).
 
 ### Algorithm 1: Linear Combination Adjoint Method
 
-1. Initialize control \( C_0(t) \).  
-2. Solve the **state equation** for \( u_i \).  
-3. Solve the **adjoint equation** for \( w_i \).  
-4. Compute intermediate control
+1. Initialize control $C_0(t)$.  
+2. Solve the **state equation** for $u_i$.  
+3. Solve the **adjoint equation** for $w_i$.  
+4. Compute intermediate control:
 
    $$
-   \tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i \, dx
+   \tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i\,dx
    $$
 
 5. Update the control:
 
    $$
-   C_{i+1} = \beta C_i + (1 - \beta) \tilde{C}, 
-   \quad \beta \in [0, 1)
+   C_{i+1} = \beta C_i + (1 - \beta)\tilde{C}, \quad \beta \in [0,1)
    $$
 
 6. Repeat until convergence:
 
    $$
-   \| C_{i+1} - C_i \| < \text{TOL}
+   \|C_{i+1} - C_i\| < \text{TOL}
    $$
 
-This iterative scheme is guaranteed to converge for sufficiently large \( \alpha \).
+This iterative scheme is guaranteed to converge for sufficiently large $\alpha$.
 
 ---
 
@@ -159,7 +158,7 @@ AD_PDE_Optimal_Control/
 
 - The optimal control consistently **outperforms constant dosing**, reducing cumulative amyloid load.  
 - The model was validated on **ADNI PET data** across 5 diagnostic groups (CN, SMC, EMCI, LMCI, AD).  
-- Estimated parameters \( D \) and \( \rho \) were biologically plausible and consistent across subjects.  
+- Estimated parameters $D$ and $\rho$ were biologically plausible and consistent across subjects.  
 - The **optimal treatment** achieved a better trade-off between efficacy and safety.
 
 ---

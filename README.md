@@ -127,9 +127,6 @@ AD_PDE_Optimal_Control/
 
 - **Dataset:** [Alzheimer’s Disease Neuroimaging Initiative (ADNI)](https://adni.loni.usc.edu)  
 - **Usage:** Access requires ADNI registration and approval.  
-- **Input Data:** PET amyloid-beta imaging data, normalized to brain surface mesh.  
-- **Mesh:** FEM meshes generated using brain surface geometry (up to 163,842 nodes).
-
 ---
 
 ## 🚀 Usage
@@ -193,14 +190,3 @@ Sun Lee (Ph.D. Candidate, Penn State University)
 - Guorong Wu (UNC Chapel Hill)  
 - Wenrui Hao (Penn State University)
 
----
-
-## 💡 Future Work
-
-- Extend to **multi-biomarker models** (Aβ + tau)  
-- Incorporate **multi-objective optimization**  
-- Explore **deep learning surrogates** for PDE control
-
----
-
-**Last Updated:** October 27, 2025

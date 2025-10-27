@@ -25,26 +25,35 @@ The framework computes optimal dosing schedules that minimize amyloid plaque bur
 
 The amyloid-beta (Aβ) concentration \( u(x, t) \) satisfies:
 
-\[
-u_t - \nabla \cdot (D(x)\nabla u) = \rho(1 - u)u - C(t)u, \quad (x,t) \in \Omega \times (0,T)
-\]
+$$
+u_t - \nabla \cdot (D(x) \nabla u) = \rho (1 - u) u - C(t) u, 
+\quad (x, t) \in \Omega \times (0, T)
+$$
 
 with no-flux boundary conditions:
-\[
-\frac{\partial u}{\partial n} = 0 \text{ on } \partial \Omega
-\]
 
-and an initial condition \( u(x,0) = u_0(x) \) derived from PET imaging data.
+$$
+\frac{\partial u}{\partial n} = 0, \quad \text{on } \partial \Omega
+$$
+
+and an initial condition derived from PET imaging data:
+
+$$
+u(x, 0) = u_0(x)
+$$
 
 ### Objective Function
 
-\[
-J(C) = \int_0^T \left( \int_\Omega u_C(x,t)\,dx + \alpha C^2(t) \right) dt
-\]
+The optimization seeks to minimize the functional:
+
+$$
+J(C) = \int_0^T \left( \int_\Omega u_C(x, t) \, dx + \alpha C^2(t) \right) dt
+$$
 
 where:
-- \( u_C \): solution under treatment function \( C(t) \),
-- \( \alpha \): penalty coefficient controlling side-effect weight.
+
+- \( u_C \): solution under control function \( C(t) \),  
+- \( \alpha \): penalty coefficient weighting side-effect cost.
 
 The optimal control \( C^*(t) \) minimizes \( J(C) \).
 
@@ -54,24 +63,33 @@ The optimal control \( C^*(t) \) minimizes \( J(C) \).
 
 ### Numerical Methods
 
-- **Spatial Discretization:** Finite Element Method (FEM)
-- **Temporal Scheme:** Implicit Euler or Crank–Nicolson
-- **Optimization:** Adjoint-based iteration using the **Linear Combination Adjoint Method**
+- **Spatial Discretization:** Finite Element Method (FEM)  
+- **Temporal Scheme:** Implicit Euler or Crank–Nicolson  
+- **Optimization:** Adjoint-based iteration using the *Linear Combination Adjoint Method*
 
 ### Algorithm 1: Linear Combination Adjoint Method
 
-1. Initialize control \( C_0(t) \)
-2. Solve the **state equation** for \( u_i \)
-3. Solve the **adjoint equation** for \( w_i \)
-4. Compute intermediate control  
-   \[
-   \tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i\, dx
-   \]
-5. Update  
-   \[
-   C_{i+1} = \beta C_i + (1 - \beta)\tilde{C}, \quad \beta \in [0,1)
-   \]
-6. Repeat until convergence \( \|C_{i+1} - C_i\| < \text{TOL} \)
+1. Initialize control \( C_0(t) \).  
+2. Solve the **state equation** for \( u_i \).  
+3. Solve the **adjoint equation** for \( w_i \).  
+4. Compute intermediate control
+
+   $$
+   \tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i \, dx
+   $$
+
+5. Update the control:
+
+   $$
+   C_{i+1} = \beta C_i + (1 - \beta) \tilde{C}, 
+   \quad \beta \in [0, 1)
+   $$
+
+6. Repeat until convergence:
+
+   $$
+   \| C_{i+1} - C_i \| < \text{TOL}
+   $$
 
 This iterative scheme is guaranteed to converge for sufficiently large \( \alpha \).
 
@@ -108,9 +126,9 @@ AD_PDE_Optimal_Control/
 
 ## 📊 Data
 
-- **Dataset:** [Alzheimer’s Disease Neuroimaging Initiative (ADNI)](https://adni.loni.usc.edu)
-- **Usage:** Access requires ADNI registration and approval.
-- **Input Data:** PET amyloid-beta imaging data, normalized to brain surface mesh.
+- **Dataset:** [Alzheimer’s Disease Neuroimaging Initiative (ADNI)](https://adni.loni.usc.edu)  
+- **Usage:** Access requires ADNI registration and approval.  
+- **Input Data:** PET amyloid-beta imaging data, normalized to brain surface mesh.  
 - **Mesh:** FEM meshes generated using brain surface geometry (up to 163,842 nodes).
 
 ---
@@ -133,15 +151,15 @@ AD_PDE_Optimal_Control/
    run('examples/2D_case_with_PET.m')
    ```
 
-4. View results in `results/` folder.
+4. View results in the `results/` folder.
 
 ---
 
 ## 📈 Results Summary
 
-- The optimal control consistently **outperforms constant dosing**, reducing cumulative amyloid load.
-- The model was validated on **ADNI PET data** across 5 diagnostic groups (CN, SMC, EMCI, LMCI, AD).
-- Estimated parameters \( D \) and \( \rho \) were biologically plausible and consistent across subjects.
+- The optimal control consistently **outperforms constant dosing**, reducing cumulative amyloid load.  
+- The model was validated on **ADNI PET data** across 5 diagnostic groups (CN, SMC, EMCI, LMCI, AD).  
+- Estimated parameters \( D \) and \( \rho \) were biologically plausible and consistent across subjects.  
 - The **optimal treatment** achieved a better trade-off between efficacy and safety.
 
 ---
@@ -176,4 +194,14 @@ Sun Lee (Ph.D. Candidate, Penn State University)
 - Guorong Wu (UNC Chapel Hill)  
 - Wenrui Hao (Penn State University)
 
+---
 
+## 💡 Future Work
+
+- Extend to **multi-biomarker models** (Aβ + tau)  
+- Incorporate **multi-objective optimization**  
+- Explore **deep learning surrogates** for PDE control
+
+---
+
+**Last Updated:** October 27, 2025

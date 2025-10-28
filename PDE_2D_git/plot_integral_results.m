@@ -1,0 +1,63 @@
+clc
+clear all
+loadFile = 'Data/002_S_0413/Main_avg_data_v1_nor.mat';
+load(loadFile)
+domain_size = compute_integral(ones(size(pars.model.Mesh.Nodes,2),1), pars.model.Mesh.Nodes', pars.model.Mesh.Elements');
+
+close all
+figure(99);
+desired_times = [10, 20, 30, 40];
+[~, time_indices] = arrayfun(@(t) min(abs(pars.tlist - t)), desired_times);
+t = tiledlayout(2,4,'TileSpacing','compact','Padding','compact');
+time_integrals_1 = cell(1,numel(desired_times));
+for k = 1:numel(desired_times)
+    i2 = time_indices(k);
+    time_integral = trapz(pars.tlist(1:i2), pars.u(:, 1:i2), 2);
+    time_integrals_1{k} = time_integral;
+
+    ax = axes(t); 
+    ax.Layout.Tile = k+4; 
+    hold(ax,'on')
+    pdeplot(pars.model, 'XYData', time_integral(:), 'Parent', ax, 'ColorBar','off'); % 자동 colorbar 비활성화
+    set(ax,'YDir','reverse')
+    axis(ax,'off','equal','tight')
+end
+
+pars.c0 = c_avg*ones(size(pars.tlist));
+tC = Ldirection(c_avg*ones(size(pars.tlist)));
+
+
+time_integrals_2 = cell(1,numel(desired_times));
+for k = 1:numel(desired_times)
+    i2 = time_indices(k);
+    time_integral = trapz(pars.tlist(1:i2), pars.u(:, 1:i2), 2);
+    time_integrals_2{k} = time_integral;
+    diff_integral = time_integrals_2{k};
+
+    ax = axes(t);
+    ax.Layout.Tile = k; 
+    hold(ax,'on')
+    pdeplot(pars.model, 'XYData', diff_integral(:), 'Parent', ax, 'ColorBar','off');
+    title(ax, ['$t = ', num2str(round(pars.tlist(i2))), '$'], 'Interpreter','latex','FontSize',25)
+    set(ax,'YDir','reverse')
+    axis(ax,'off','equal','tight')
+end
+
+
+ccmin = 0;
+ccmax = max(max(time_integrals_1{4}));
+allAxes = findobj(t.Children, 'Type', 'axes');
+for ax = allAxes'
+    caxis(ax,[ccmin,ccmax]);
+end
+
+
+colormap(gcf,'jet');
+cb = colorbar('eastoutside', 'FontSize', 18);
+cb.Label.Interpreter = 'latex';
+cb.Position = [0.955, 0.1, 0.02, 0.8];  
+
+set(gcf,'Position',[200,200,1100,600]);
+
+
+

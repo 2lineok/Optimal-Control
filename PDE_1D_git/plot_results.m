@@ -37,12 +37,6 @@ paras.Doper = paras.Doper/(paras.dx^2);
 paras.wmax = 0*ones(size(paras.xmesh));
 
 
-all_data = struct();  % 전체 결과를 담을 구조체
-
-
-
-
-
 
 
 n_nodes = length(paras.xmesh);
@@ -66,10 +60,6 @@ end
 
 % Store the mass matrix in paras struct
 paras.MassMatrix_x = Mx;
-
-%max(max(abs(paras.M_x_inv*paras.MassMatrix_x-eye(size(Mx,1)))))
-%max(max(abs(paras.MassMatrix_x * paras.M_x_inv-eye(size(Mx,1)))))
-
 
 
 

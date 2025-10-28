@@ -76,7 +76,7 @@ The optimal control $C^*(t)$ minimizes $J(C)$.
    $\tilde{C} = -\frac{1}{2\alpha} \int_\Omega u_i w_i\,dx$
 
 5. Update the control:
-   $C_{i+1} = \beta C_i + (1 - \beta)\tilde{C}, \quad \beta \in [0,1)$
+   $C_{i+1} = \beta C_i + (1 - \beta)\tilde{C}, \quad \beta \in (0,1)$
 
 6. Repeat until convergence:
    $\|C_{i+1} - C_i\| < \text{TOL}$

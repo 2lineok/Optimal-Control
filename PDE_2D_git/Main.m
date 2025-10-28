@@ -1,5 +1,5 @@
 close all;clc;clear all
-
+addpath Functions
 ii=1
 global pars
 %% ----------------------------

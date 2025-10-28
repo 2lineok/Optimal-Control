@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-
+addpath Functions
 all_data = struct(); 
 
 % NOTE:
@@ -38,6 +38,7 @@ all_data(idx).J_star    = JJ;
 
 close all
 save('all_results_data.mat', 'all_data', '-v7.3');
+
 
 
 

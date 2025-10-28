@@ -2,7 +2,7 @@ clear all;clc;close all
 %Data generated from Main.m and use this to plot properly
 load("all_results_data.mat")
 global paras
-
+addpath Functions
 
 
 paras.alpha=100;
@@ -119,3 +119,4 @@ zlabel('$\int_0^t \delta u(x,s) \, ds$', 'Interpreter', 'latex','fontsize',25)
 %title('Cumulative Integral of $u(t,x)$', 'Interpreter', 'latex')
 title(sprintf('$\\mathcal{J}(C) - \\mathcal{J}(C^*) = %.4f$', J_t1(end) - J_t2(end)),'Interpreter', 'latex', 'FontSize', 18);
 set(gca, 'FontSize', 18);
+

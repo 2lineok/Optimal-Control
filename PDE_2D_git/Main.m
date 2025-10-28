@@ -1,19 +1,43 @@
 close all;clc;clear all
-svsv=1
+
 ii=1
 global pars
-% Define the base directory path
-base_path = 'Data';
+%% ----------------------------
+%  User Data Configuration
+% ----------------------------
+% NOTE:
+%   Replace 'Data' with the path to your own data directory containing
+%   the subject folders (e.g., "002_*").
+%   Each folder should contain the required NIfTI (.nii) files.
+%
+%   Example directory structure:
+%       YourProject/
+%           ├── main_script.m
+%           └── Data/
+%               ├── 002_subject1/
+%               │     └── av45.nii
+%               └── 002_subject2/
+%                     └── av45.nii
+%
+%   ⚠️ The actual data files (.nii) are not included in this repository.
+%   Please add your own before running the code.
 
-% Get a list of all matching subdirectories
+% Define the base directory path (update this path as needed)
+base_path = 'Data';   % <-- Set your local data path here
+
+% Get a list of all matching subdirectories (e.g., 002_*)
 subdirs = dir(fullfile(base_path, '002_*'));
 
 % Filter only directories (exclude files)
-subdirs = subdirs([subdirs.isdir]); 
+subdirs = subdirs([subdirs.isdir]);
 
 % Create the figure once and use it to update visualizations
 hFig = figure; % Create the figure handle
-fileName='av45.nii/av45.nii'
+
+% Define the NIfTI file name within each subject folder
+fileName = 'av45.nii/av45.nii';  % Expected .nii file format
+
+% We choosed the middle slice (48th slice)
 for j=48%1:96
 % Loop through each matching file
 
@@ -387,7 +411,7 @@ for j=48%1:96
             %print(gcf,'-depsc',fn_eps,'-r300');
             %fn_fig = [fn_name 'u.fig'];
             fn_name = mfilename;  
-            fn_fig = fullfile(path, [fn_name sprintf('u_avg_v%g_nor.fig',svsv)]);
+            fn_fig = fullfile(path, [fn_name sprintf('u_nor.fig')]);
             savefig(fn_fig);      
         
     end
@@ -422,10 +446,10 @@ for j=48%1:96
             %fn_fig = [fn_name '.fig'];
     
             fn_name = mfilename;  
-            fn_fig = fullfile(path, [fn_name sprintf('_avg_v%g_nor.fig',svsv)]);
+            fn_fig = fullfile(path, [fn_name sprintf('_nor.fig')]);
             savefig(fn_fig);   
             fn_name = mfilename;  
-            fn = fullfile(path, [fn_name sprintf('_avg_data_v%g_nor.mat',svsv)]);
+            fn = fullfile(path, [fn_name sprintf('_nor.mat')]);
 
 save(fn, '-v7.3'); 
 

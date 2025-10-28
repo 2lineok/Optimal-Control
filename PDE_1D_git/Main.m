@@ -1,5 +1,5 @@
 clear all;clc;close all
-
+addpath Functions
 global paras
 
 paras.alpha=100;
@@ -142,3 +142,4 @@ ylim([0.2 , max(max(paras.u_omega'+paras.alpha*(paras.c0.^2)))])
 set(gca, 'FontSize', 25);
 legend("Constant Control","Optimal Control")
 save('all_results_data.mat', 'all_data', '-v7.3');
+

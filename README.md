@@ -104,12 +104,12 @@ AD_PDE_Optimal_Control/
 │   ├── 2D_case_with_PET.m
 │   └── 3D_brain_surface.m
 │
-├── results/
-│   ├── control_vs_constant.png
-│   ├── cumulative_difference.png
-│   └── validation_accuracy.png
-│
-└── README.md
+├── Main.m               # Run this first to generate results
+├── plot_results.m       # Visualization script (run after Main)
+└── Functions/           # Helper functions
+    ├── solve_u.m        # Solves the state equation
+    ├── solve_w.m        # Solves the adjoint equation
+    └── direction_update.m  # Updates control variable C
 ```
 
 ---

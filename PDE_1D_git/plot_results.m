@@ -1,12 +1,14 @@
 clear all;clc;close all
-%Data generated from save_all_Files.m and use this to plot properly
+%Data generated from Main.m and use this to plot properly
+load("all_results_data.mat")
 global paras
+
+
 
 paras.alpha=100;
 
 opts = odeset('RelTol',1e-10,'AbsTol',1e-12,'Stats','On');
 paras.opts = [];
-%paras.opts = opts;
 paras.chip = 0;
 nt = 400;
 nx = 20;
@@ -33,27 +35,6 @@ paras.Doper = paras.Doper/(paras.dx^2);
 
 % Initial for w(T) so it should be 0
 paras.wmax = 0*ones(size(paras.xmesh));
-
-
-
-
-
-% prepare quadrature rule weight
-weig = ones(size(paras.t0));
-weig(2:2:end-1) = 4;
-weig(3:2:end-2) = 2;
-weig = weig/3*paras.h;
-paras.weig = weig;
-
-
-% prepare quadrature rule weight for x
-weigx = ones(size(paras.xmesh));
-weigx(2:2:end-1) = 4;
-weigx(3:2:end-2) = 2;
-weigx = weigx/3*(paras.xmesh(2)-paras.xmesh(1));
-paras.weigx = weigx;
-
-
 
 
 all_data = struct();  % 전체 결과를 담을 구조체
@@ -117,28 +98,18 @@ end
 paras.MassMatrix_t = Mt;
 
 
-load("all_results_data.mat")
+
 
 
 U_int1 = cumtrapz(paras.t0, all_data(1).u, 1);
 U_int2 = cumtrapz(paras.t0, all_data(2).u, 1);
-
-%U_int = cumtrapz(paras.MassMatrix_t, paras.u, 1);
 [t2,x2] = meshgrid(paras.t0,paras.xmesh);
 
 
 J_t1=cumtrapz(paras.t0,all_data(1).u_omega'+all_data(1).alpha*(all_data(1).c0.^2));
 J_t2=cumtrapz(paras.t0,all_data(2).u_omega'+all_data(2).alpha*(all_data(2).c0.^2));
 
-
-
-
-
-
-
-
 subplot(1,2,1)
-%plot(all_data(1).tlist,all_data(2).c0-all_data(1).c0,'linewidth',3)
 plot(all_data(1).tlist,all_data(2).c0,'linewidth',3)
 
 xlabel('$t$', 'Interpreter', 'latex','fontsize',18)
@@ -146,17 +117,6 @@ ylabel('$C^*$', 'Interpreter', 'latex','fontsize',25)
 xlim([min(paras.t0) max(paras.t0)])
 %title(sprintf("\\alpha = %d",paras.alpha),'fontsize',18)
 set(gca, 'FontSize', 18);
-
-% subplot(1,3,2)
-% plot(all_data(1).tlist,all_data(1).u_omega'-(all_data(2).u_omega')      ,'linewidth',3)
-% %plot(all_data(1).tlist,J_t1-J_t2      )
-% xlim([min(paras.t0) max(paras.t0)])
-% xlabel('$t$', 'Interpreter', 'latex','fontsize',18)
-% ylabel('$\int_{\Omega} \delta u(x,t) \, dx$', 'Interpreter', 'latex','fontsize',25)
-% title(sprintf('$\\mathcal{J}(C) - \\mathcal{J}(C^*) = %.4f$', J_t1(end) - J_t2(end)),'Interpreter', 'latex', 'FontSize', 18);
-% set(gca, 'FontSize', 18);
-
-
 
 
 % Plot cumulative integral of u
@@ -169,34 +129,3 @@ zlabel('$\int_0^t \delta u(x,s) \, ds$', 'Interpreter', 'latex','fontsize',25)
 %title('Cumulative Integral of $u(t,x)$', 'Interpreter', 'latex')
 title(sprintf('$\\mathcal{J}(C) - \\mathcal{J}(C^*) = %.4f$', J_t1(end) - J_t2(end)),'Interpreter', 'latex', 'FontSize', 18);
 set(gca, 'FontSize', 18);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

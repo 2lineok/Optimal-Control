@@ -106,6 +106,7 @@ AD_PDE_Optimal_Control/
 │
 ├── Main.m               # Run this first to generate results
 ├── plot_results.m       # Visualization script (run after Main)
+├── inverse_problem.m    # Estimates D and ρ used in Main.m only in 3D example
 └── Functions/           # Helper functions
     ├── solve_u.m        # Solves the state equation
     ├── solve_w.m        # Solves the adjoint equation

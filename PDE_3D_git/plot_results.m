@@ -4,9 +4,6 @@ addpath Functions
 %   Replace 'your_mesh_file.vtk' with the path to your own VTK surface mesh.
 %   The file should be in ASCII VTK format (e.g., cortical surface mesh).
 %
-%   Example:
-%       vtkfile = 'Data/lh_r.pial.vtk';
-%
 %   ⚠️ The actual mesh file is not included in this repository.
 
 vtkfile = 'your_mesh_file.vtk';  % <-- Specify your .vtk mesh file here
@@ -184,4 +181,5 @@ grid on;
 xlabel('$t$', 'Interpreter','latex');
 %ylabel('$C^* (t)$', 'Interpreter','latex');
 title(sprintf('$\\int_0^t\\int_\\Omega U^*(x,s) dx ds$ '), 'Interpreter','latex');
+
 

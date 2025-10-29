@@ -4,9 +4,6 @@ addpath Functions
 %   Replace 'your_mesh_file.vtk' with the path to your own VTK surface mesh.
 %   The file should be in ASCII VTK format (e.g., cortical surface mesh).
 %
-%   Example:
-%       vtkfile = 'Data/lh_r.pial.vtk';
-%
 %   ⚠️ The actual mesh file is not included in this repository.
 
 vtkfile = 'your_mesh_file.vtk';  % <-- Specify your .vtk mesh file here
@@ -108,3 +105,4 @@ tsu_str   = sprintf('%.2e', time_step_update)
 
 filename = sprintf('data_alpha%s_ts%s.mat', alpha_str, tsu_str)
 save(filename, 'C_time_or_fun', 'rho', 'D', 'alpha', 'tgrid', 'time_step_update');
+

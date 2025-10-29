@@ -94,7 +94,7 @@ AD_PDE_Optimal_Control/
 │   └── ADNI_PET/                     # PET imaging data (requires ADNI access)
 │
 │
-├── examples/
+├── Examples
 │   ├── 1D_case
 │   ├── 2D_case_with_PET
 │   └── 3D_brain_surface
@@ -116,33 +116,11 @@ AD_PDE_Optimal_Control/
 - **Usage:** Access requires ADNI registration and approval.  
 ---
 
-## 🚀 Usage
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/AD_PDE_Optimal_Control.git
-   cd AD_PDE_Optimal_Control
-   ```
-
-2. Add `src/` to MATLAB path:
-   ```matlab
-   addpath('src')
-   ```
-
-3. Run an example:
-   ```matlab
-   run('examples/2D_case_with_PET.m')
-   ```
-
-4. View results in the `results/` folder.
-
----
 
 ## 📈 Results Summary
 
 - The optimal control consistently **outperforms constant dosing**, reducing cumulative amyloid load.  
 - The model was validated on **ADNI PET data** across 5 diagnostic groups (CN, SMC, EMCI, LMCI, AD).  
-- Estimated parameters $D$ and $\rho$ were biologically plausible and consistent across subjects.  
 - The **optimal treatment** achieved a better trade-off between efficacy and safety.
 
 ---

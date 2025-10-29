@@ -93,17 +93,12 @@ AD_PDE_Optimal_Control/
 ├── data/
 │   └── ADNI_PET/                     # PET imaging data (requires ADNI access)
 │
-├── src/
-│   ├── main_solver.m                 # Main FEM solver for state and adjoint PDEs
-│   ├── optimal_control.m             # Linear Combination Adjoint Method implementation
-│   ├── parameter_estimation.m        # Inverse estimation for D and ρ
-│   ├── utils/                        # Helper functions (mesh generation, visualization, etc.)
 │
 ├── examples/
-│   ├── 1D_case.m
-│   ├── 2D_case_with_PET.m
-│   └── 3D_brain_surface.m
-│
+│   ├── 1D_case
+│   ├── 2D_case_with_PET
+│   └── 3D_brain_surface
+│   #For each example will be constructed in similar way.
 ├── Main.m               # Run this first to generate results
 ├── plot_results.m       # Visualization script (run after Main)
 ├── inverse_problem.m    # Estimates D and ρ used in Main.m only in 3D example

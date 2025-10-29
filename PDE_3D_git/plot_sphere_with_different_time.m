@@ -4,9 +4,6 @@ addpath Functions
 %   Replace 'your_mesh_file.vtk' with the path to your own VTK surface mesh.
 %   The file should be in ASCII VTK format (e.g., cortical surface mesh).
 %
-%   Example:
-%       vtkfile = 'Data/lh_r.pial.vtk';
-%
 %   ⚠️ The actual mesh file is not included in this repository.
 
 vtkfile = 'your_mesh_file.vtk';  % <-- Specify your .vtk mesh file here
@@ -81,3 +78,4 @@ end
 cb = colorbar('east', 'FontSize', 14, 'Ticks', 0:0.2:1);
 cb.Label.FontSize = 16;
 cb.Position = [0.94, 0.25, 0.02, 0.4];  % [x, y, width, height]
+

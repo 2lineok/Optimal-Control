@@ -4,9 +4,6 @@ addpath Functions
 %   Replace 'your_mesh_file.vtk' with the path to your own VTK surface mesh.
 %   The file should be in ASCII VTK format (e.g., cortical surface mesh).
 %
-%   Example:
-%       vtkfile = 'Data/lh_r.pial.vtk';
-%
 %   ⚠️ The actual mesh file is not included in this repository.
 
 vtkfile = 'your_mesh_file.vtk';  % <-- Specify your .vtk mesh file here
@@ -278,5 +275,6 @@ function t_rel_years = parse_years_from_filename(fname, ref_fname)
     t0 = datetime(tok0, 'InputFormat','yyyyMMddHHmmss');
     t_rel_years = years(t1 - t0); % duration in years (double)
 end
+
 
 

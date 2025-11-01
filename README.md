@@ -91,7 +91,7 @@ This iterative scheme is guaranteed to converge for sufficiently large $\alpha$.
 AD_PDE_Optimal_Control/
 │
 ├── data/
-│   └── ADNI_PET/                     # PET imaging data (requires ADNI access)
+│   └── ADNI_PET/                     # PET imaging data (requires ADNI access, we do not provide this data)
 │
 │
 ├── Examples

@@ -71,7 +71,7 @@ Nsteps = round(Tfinal * substeps_per_year);
 %   Default name will be 'filename = sprintf('data_alpha%s_ts%s.mat', alpha_str, tsu_str)'
 
 loadFile = 'your_file.mat';
-
+load(loadFile)
 
 
 K = D * K0;
@@ -182,6 +182,7 @@ grid on;
 xlabel('$t$', 'Interpreter','latex');
 %ylabel('$C^* (t)$', 'Interpreter','latex');
 title(sprintf('$\\int_0^t\\int_\\Omega U^*(x,s) dx ds$ '), 'Interpreter','latex');
+
 
 
 

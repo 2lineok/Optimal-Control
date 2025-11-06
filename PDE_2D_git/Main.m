@@ -37,7 +37,7 @@ hFig = figure; % Create the figure handle
 % Define the NIfTI file name within each subject folder
 fileName = 'av45.nii/av45.nii';  % Expected .nii file format
 
-% We choosed the middle slice (48th slice)
+% We chose the middle slice (48th slice)
 for j=48%1:96
 % Loop through each matching file
 

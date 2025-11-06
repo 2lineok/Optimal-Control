@@ -28,7 +28,7 @@ for k = 1:numel(obs_files)
     if ~isfile(obs_files{k})
         error('Missing file: %s', obs_files{k});
     end
-    % 첫 줄이 텍스트라면 readmatrix가 자동으로 skip
+    % If first row is text, readmatrix will skip it.
     u = readmatrix(obs_files{k});  
     if numel(u) ~= N
         error('Size mismatch in %s', obs_files{k});
@@ -76,7 +76,7 @@ loadFile = 'your_file.mat';
 K = D * K0;
 
 A = M + dt*K;    % sparse SPD matrix
-% incomplete Cholesky factorization (drop tolerance 조절 가능)
+% incomplete Cholesky factorization (drop tolerance can be modified)
 L = ichol(A, struct('type','ict','droptol',1e-4));
 
 [Usim_opt, tgrid] = Solve_u(u0, K, M, rho, C_time_or_fun, dt,A,L);
@@ -181,5 +181,6 @@ grid on;
 xlabel('$t$', 'Interpreter','latex');
 %ylabel('$C^* (t)$', 'Interpreter','latex');
 title(sprintf('$\\int_0^t\\int_\\Omega U^*(x,s) dx ds$ '), 'Interpreter','latex');
+
 
 

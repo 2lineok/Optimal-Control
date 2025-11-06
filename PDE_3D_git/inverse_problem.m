@@ -224,7 +224,7 @@ function Usim = simulate_to_times(u0, K, M, rho, t_years, substeps_per_year)
         dt = 1/substeps_per_year;  % year^-1
 A = M + dt*K;
 
-% incomplete Cholesky factorization (drop tolerance 조절 가능)
+% incomplete Cholesky factorization (drop tolerance can be modified)
 L = ichol(A, struct('type','ict','droptol',1e-3));
 
 tol = 1e-8;    % CG tolerance
@@ -275,6 +275,7 @@ function t_rel_years = parse_years_from_filename(fname, ref_fname)
     t0 = datetime(tok0, 'InputFormat','yyyyMMddHHmmss');
     t_rel_years = years(t1 - t0); % duration in years (double)
 end
+
 
 
 

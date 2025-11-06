@@ -72,7 +72,7 @@ L = ichol(A, struct('type','ict','droptol',1e-4));
 
 
 for iter = 1:maxit
-    % Gradient direction compute
+    % Gradient direction compute. As you can see in the remark from the paper, it is exactly same with Linear Combination Adjoint Method.
     [J, DJ] = Gdirection(u0, K, M, rho, C_time_or_fun, dt, alpha,A,L);
 
     % Update
@@ -105,4 +105,5 @@ tsu_str   = sprintf('%.2e', time_step_update)
 
 filename = sprintf('data_alpha%s_ts%s.mat', alpha_str, tsu_str)
 save(filename, 'C_time_or_fun', 'rho', 'D', 'alpha', 'tgrid', 'time_step_update');
+
 

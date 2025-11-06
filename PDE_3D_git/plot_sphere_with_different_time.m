@@ -10,7 +10,7 @@ vtkfile = 'your_mesh_file.vtk';  % <-- Specify your .vtk mesh file here
 [coords, faces] = read_vtk_ascii(vtkfile);
 N = size(coords,1)
 
-% 2) Observation files (earliest = initial state, last = validation)
+
 % NOTE:
 %   Replace the paths below with your own observation .txt files.
 %   Each file name includes a timestamp in the format YYYYMMDDHHMMSS,
@@ -78,4 +78,5 @@ end
 cb = colorbar('east', 'FontSize', 14, 'Ticks', 0:0.2:1);
 cb.Label.FontSize = 16;
 cb.Position = [0.94, 0.25, 0.02, 0.4];  % [x, y, width, height]
+
 

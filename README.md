@@ -101,7 +101,6 @@ AD_PDE_Optimal_Control/
 │   # Each example follows a similar structure.
 ├── README.md            # Instructions for running the code and reproducing figures
 ├── Main.m               # Run this first to generate results
-├── Parameters.m         # Model parameters (e.g., D, ρ, α) used in the simulations for 1D and 2D
 ├── plot_results.m       # Visualization script (run after Main)
 ├── inverse_problem.m    # Estimates D and ρ used in Main.m only in 3D example
 └── Functions/           # Helper functions

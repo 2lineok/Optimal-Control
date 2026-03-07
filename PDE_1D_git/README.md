@@ -20,10 +20,17 @@ run:
 
 plot_results.m
 
-## Model parameters
+## Model Parameters
 
-The parameters used in the simulation are defined in Main.m:
+The parameters defining the PDE model used in the simulation:
 
-- diffusion coefficient D = 0.012
-- growth rate ρ = 0.012
-- parameter α = 100
+- Diffusion coefficient: D = 0.012
+- Growth rate: ρ = 0.012
+- Regularization parameter: α = 100
+
+## Algorithm Parameters
+
+The parameters controlling the numerical iteration and optimization:
+
+- Convergence tolerance: crit_tol = 1e-9
+- Relaxation factor: beta = 0.5

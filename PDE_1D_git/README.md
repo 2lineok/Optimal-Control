@@ -27,6 +27,7 @@ The parameters defining the PDE model used in the simulation:
 - Diffusion coefficient: D = 0.002
 - Growth rate: ρ = 0.012
 - Regularization parameter: α = 100
+- Maximum simulation time: T = 42
 
 ## Algorithm Parameters
 

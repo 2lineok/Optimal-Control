@@ -131,15 +131,6 @@ all_data(idx).omega    = paras.omega;
 all_data(idx).JT_star   = paras.JT;
 
 
+save('all_results_data.mat', 'all_data','paras', '-v7.3');
 
-plot(paras.t0,paras.u_omega'+paras.alpha*(paras.c0.^2),'linewidth',3)
-xlabel('$t$', 'Interpreter', 'latex','fontsize',18)
-ylabel('$\int_{\Omega} u(x,t) \, dx + \alpha C^2(t)$', 'Interpreter', 'latex','fontsize',18)
-title(sprintf("\\alpha = %d",paras.alpha),'fontsize',18)
-xlim([min(paras.t0) max(paras.t0)])
-ylim([0.2 , max(max(paras.u_omega'+paras.alpha*(paras.c0.^2)))])
-   
-set(gca, 'FontSize', 25);
-legend("Constant Control","Optimal Control")
-save('all_results_data.mat', 'all_data', '-v7.3');
 

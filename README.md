@@ -94,12 +94,14 @@ AD_PDE_Optimal_Control/
 │   └── ADNI_PET/                     # PET imaging data (requires ADNI access, we do not provide this data)
 │
 │
-├── Examples
+├── Examples/
 │   ├── 1D_case
 │   ├── 2D_case_with_PET
 │   └── 3D_brain_surface
-│   #For each example will be constructed in similar way.
+│   # Each example follows a similar structure.
+├── README.md            # Instructions for running the code and reproducing figures
 ├── Main.m               # Run this first to generate results
+├── Parameters.m         # Model parameters (e.g., D, ρ, α) used in the simulations for 1D and 2D
 ├── plot_results.m       # Visualization script (run after Main)
 ├── inverse_problem.m    # Estimates D and ρ used in Main.m only in 3D example
 └── Functions/           # Helper functions

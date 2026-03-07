@@ -109,7 +109,7 @@ while TOL>crit_tol
     i=i+1
     paras.c0=beta*C_old+(1-beta)*C_tilda;
     
-TOL=norm(C_tilda-C_old)
+TOL=norm(C_tilda-C_old,'fro')
 C=paras.c0;
 sprintf("This is C average %d",C*paras.MassMatrix_t*ones(size(C))'/paras.tmax)
 end
@@ -132,5 +132,6 @@ all_data(idx).JT_star   = paras.JT;
 
 
 save('all_results_data.mat', 'all_data','paras', '-v7.3');
+
 
 

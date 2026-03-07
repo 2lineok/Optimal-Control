@@ -9,10 +9,6 @@ Researchers must obtain access through:
 
 https://adni.loni.usc.edu/
 
-The PET data should be placed in:
-
-data/ADNI_PET/
-
 ## Steps to reproduce
 
 1. Run the simulation
@@ -31,9 +27,9 @@ plot_results.m
 
 The parameters defining the PDE model used in the simulation:
 
-- Diffusion coefficient: D = 0.012
+- Diffusion coefficient: D = 0.02
 - Growth rate: ρ = 0.012
-- Regularization parameter: α = 100
+- Regularization parameter: α = 1000000
 - Maximum simulation time: T = 42
 
 ## Algorithm Parameters

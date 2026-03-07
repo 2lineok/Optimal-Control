@@ -22,12 +22,8 @@ plot_results.m
 
 ## Model parameters
 
-The parameters used in the simulation are defined in:
+The parameters used in the simulation are defined in Main.m:
 
-Parameters.m
-
-These include:
-
-- diffusion coefficient D
-- growth rate ρ
-- parameter α
+- diffusion coefficient D = 0.012
+- growth rate ρ = 0.012
+- parameter α = 100

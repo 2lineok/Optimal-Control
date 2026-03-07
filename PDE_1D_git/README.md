@@ -14,7 +14,7 @@ run:
 
 Main.m
 
-2. Generate figures
+2. Generate figures (Figure 1 in the paper)
 
 run:
 

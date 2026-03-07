@@ -30,5 +30,4 @@ These include:
 
 - diffusion coefficient D
 - growth rate ρ
-- regularization parameter α
-- maximum control bound M
+- parameter α

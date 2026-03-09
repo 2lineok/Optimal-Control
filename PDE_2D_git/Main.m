@@ -31,8 +31,6 @@ subdirs = dir(fullfile(base_path, '002_*'));
 % Filter only directories (exclude files)
 subdirs = subdirs([subdirs.isdir]);
 
-% Create the figure once and use it to update visualizations
-hFig = figure; % Create the figure handle
 
 % Define the NIfTI file name within each subject folder
 fileName = 'av45.nii/av45.nii';  % Expected .nii file format
@@ -58,20 +56,8 @@ for j=48%1:96
     threshold = 0.1; % Example threshold value
     ROI = sliceData > threshold;
     sliceData=sliceData./(max(max(sliceData)));
-    % Update the figure without creating new ones
 
 
-    % Subplot 1: Original slice image
-    ax(1) = subplot(2, 3, 1);
-    imagesc(sliceData, [min(sliceData(:)), max(sliceData(:))]);
-    %colormap(gray);  % Grayscale colormap
-    hold on;
-    axis equal;
-    axis tight;
-    set(gca, 'YDir', 'normal');
-    title('Original Slice');
-
-    
     % Overlay the ROI contours on the brain slice
     [c, h] = contour(double(ROI), [0.5, 0.5], 'Visible', 'off');
     
@@ -90,35 +76,9 @@ for j=48%1:96
         bd2{i} = c(2, nind); % y-coordinates
     end
     
-    % Visualize contours on a separate figure for clarity
 
-    ax(2) = subplot(2,3,2);
-    imagesc(sliceData, [min(sliceData(:)), max(sliceData(:))]); % Display brain slice
-    %colormap(gray);
-    % axis equal; axis tight; hold on;
-    set(gca, 'YDir', 'normal');
     
-    title(['Brain Image with ROI (Slice ' num2str(sliceNumber) ')']);
-    hold on; axis equal;
-    for i = 1:length(bd1)
-        plot(bd1{i}, bd2{i}, 'b', 'LineWidth', 2);
-    end
-    legend('ROI Contour');
-    
-    
-    ax(3) = subplot(2,3,3);
-    hold on
-    for i = 1:length(bd1)
-        plot(bd1{i}, bd2{i}, 'b', 'LineWidth', 2);
-    end
-    legend('ROI Contour');
-    % winsize = get(0, 'ScreenSize'); % Get full screen size
-    %         set(gcf,'Position',winsize); 
-    %         set(gcf, 'PaperPositionMode', 'auto')
-
-
-    pgon = polyshape(bd1, bd2);
-    
+   
     % Handle potential issues with empty polygons
     if isempty(pgon.Vertices)
         error('Polyshape is empty. Verify the input boundaries.');
@@ -132,12 +92,7 @@ for j=48%1:96
     tnodes = tr.Points'; % Node coordinates
     telements = tr.ConnectivityList'; % Connectivity
     
-    % Visualize the generated triangular mesh
-    % figure;
-    % triplot(tr);
-    % title(['Triangular Mesh (Slice ' num2str(sliceNumber) ')']);
-    % axis equal;
-    
+
     % Create a PDE model
     model = createpde;
     
@@ -150,18 +105,7 @@ for j=48%1:96
     
     % Get the geometry from the model
     geom = model.Geometry;
-    
-    % Subplot 4: Mesh visualization
-    ax(4) = subplot(2, 3, 4);
-    pdemesh(model);
-    title(['Finer FEM Mesh with Hmax = ' num2str(Hmax)]);
-    axis equal;
-    
-    % Subplot 5: FEM model plot
-    ax(5) = subplot(2, 3, 5);  
-    pdegplot(model, 'FaceLabels', 'on');
-    title(['FEM Model (Slice ' num2str(sliceNumber) ')']);
-    axis equal;
+
 
     % FEM mesh node coordinates (2D)
     femX = model.Mesh.Nodes(1, :);
@@ -173,20 +117,57 @@ for j=48%1:96
     % Interpolation
     interpolatedData2D = interp2(yGrid, xGrid, sliceData, femX, femY, 'linear', 0);
     
-    % Visualization of interpolated data
-    ax(6) = subplot(2, 3, 6);
-    pdeplot(model, 'XYData', interpolatedData2D, 'ColorMap', 'jet');  % Jet colormap
-    title('Interpolated Data on FEM Mesh (2D)');
-    axis equal;
+    % Define uniform position for all subplots
+    pos1 = [0.05, 0.1, 0.27, 0.8]; % Left
+    pos2 = [0.36, 0.1, 0.27, 0.8]; % Center
+    pos3 = [0.69, 0.1, 0.27, 0.8]; % Right
     
-    % Set colormap for the last subplot (subplot 6) to 'jet'
-    %colormap(ax(1), 'gray');
-    %colormap(ax(2), 'gray');
-    %colormap(ax(6), 'jet');
+    % Subplot 1: Original slice image
+    ax1 = subplot(1, 3, 1);
+    imagesc(ax1, sliceData, [min(sliceData(:)), max(sliceData(:))]);
+    set(ax1, 'YDir', 'normal'); % Fix flipped Y-axis
+    axis(ax1, 'tight');
+    axis(ax1, 'equal');
+    xlim(ax1, [0, 160]);
+    ylim(ax1, [0, 160]);
+    colormap(ax1, 'gray');
+    title(ax1, 'Original Slice', 'FontSize', 20);
+    set(ax1, 'Position', pos1); % Apply uniform position
     
-    % Ensure the title and updates reflect the current slice number
-    sgtitle(sprintf("Slice number = %d",j))
-    winsize = [144.0000  400  720.0000  300.0000];
+    % Subplot 2: Mesh visualization
+    ax2 = subplot(1, 3, 2);
+    pdemesh(model, 'Parent', ax2);
+    %title(ax2, ['Finer FEM Mesh with Hmax = ' num2str(Hmax)], 'FontSize', 20);
+    title(ax2, ['FEM Mesh'], 'FontSize', 20);
+    axis(ax2, 'tight');
+    axis(ax2, 'equal');
+    xlim(ax2, [0, 160]);
+    ylim(ax2, [0, 160]);
+    set(ax2, 'Position', pos2); % Apply uniform position
+    
+    % Subplot 3: Interpolated data on FEM mesh
+    ax3 = subplot(1, 3, 3);
+    interpolatedData2D=interpolatedData2D/max(interpolatedData2D(:));
+    pdeplot(model, 'XYData', interpolatedData2D, 'Parent', ax3);
+    title(ax3, 'Interpolated Data on FEM Mesh (2D)', 'FontSize', 20);
+    axis(ax3, 'tight');
+    axis(ax3, 'equal');
+    xlim(ax3, [0, 160]);
+    ylim(ax3, [0, 160]);
+    set(ax3, 'Position', pos3); % Apply uniform position
+    
+    % Add colorbar and disable uicontextmenu
+    cbar = colorbar(ax3);
+    cbar.UIContextMenu = []; % Disable right-click menu
+    colormap(ax3, 'jet'); % Apply colormap
+
+	
+
+
+
+
+
+
 
 
     tmin = 0;
@@ -288,7 +269,7 @@ pars.w0ini = 0;
 
 
 
-for j=48%1:96
+for j=48
 
     
     max_iter=  200;

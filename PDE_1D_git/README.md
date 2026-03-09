@@ -21,7 +21,7 @@ run:
 plot_results.m
 
 <p align="center">
-  <img src="PDE_1D_git/Figure 1.png" width="800">
+  <img src="PDE_1D_git/Figure_1.png" width="800">
 </p>
 
 ## Model Parameters

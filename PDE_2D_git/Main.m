@@ -1,6 +1,6 @@
 close all;clc;clear all
 addpath Functions
-ii=1
+ii=1 % This is the for subject #.
 global pars
 %% ----------------------------
 %  User Data Configuration

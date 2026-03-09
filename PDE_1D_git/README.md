@@ -21,7 +21,7 @@ run:
 plot_results.m
 
 <p align="center">
-  <img src="PDE_1D_git/Figure_1.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_1D_git/Figure_1.png" width="800">
 </p>
 
 ## Model Parameters

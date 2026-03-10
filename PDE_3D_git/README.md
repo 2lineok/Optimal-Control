@@ -85,14 +85,14 @@ plot_result.m
 
 The parameters defining the PDE model used in the simulation:
 
-- Diffusion coefficient: Computed from inver_problem.m
-- Growth rate: Computed from inver_problem.m
-- Regularization parameter: α = 500000
-- Maximum simulation time: T = 8
+- Diffusion coefficient \(D\): estimated from the PET data using `inverse_problem.m`
+- Growth rate \( \rho \): estimated from the PET data using `inverse_problem.m`
+- Regularization parameter: \( \alpha = 5\times10^5 \)
+- Maximum simulation time: \( T = 8 \)
 
 ## Algorithm Parameters
 
 The parameters controlling the numerical iteration and optimization:
 
-- Convergence tolerance: crit_tol = 1e-9
-- Linear Combination Adjoint Method parameter: 0 < beta = 0.5 < 1
+- Convergence tolerance: `crit_tol = 1e-9`
+- Linear Combination Adjoint Method parameter: `beta = 0.5` (with \(0 < \beta < 1\))

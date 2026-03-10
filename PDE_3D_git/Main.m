@@ -85,7 +85,7 @@ for iter = 1:maxit
     fprintf('Iter %3d: ||C - C_old|| = %.3e, ||DJ|| = %.3e\n', iter, diff_norm, grad_norm);
 
     % crieteria
-    if diff_norm < 1e-11 || grad_norm < 1e-4
+    if diff_norm < 1e-9
         disp('The optimizer is obtained.');
         break;
     end
@@ -105,5 +105,6 @@ tsu_str   = sprintf('%.2e', time_step_update)
 
 filename = sprintf('data_alpha%s_ts%s.mat', alpha_str, tsu_str)
 save(filename, 'C_time_or_fun', 'rho', 'D', 'alpha', 'tgrid', 'time_step_update');
+
 
 

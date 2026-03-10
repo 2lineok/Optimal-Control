@@ -83,7 +83,7 @@ plot_sphere_with_different_time.m
 Run:
 
 ```
-plot_result.m
+plot_results.m
 ```
 
 ## Model Parameters

@@ -168,14 +168,12 @@ for j=48%1:96
 
 
 
-
-
     tmin = 0;
     tmax = 42;
-    
-    
-    
-    
+   
+
+
+
     % parameters
     pars.tmax = tmax;
     pars.rho = 0.012;
@@ -228,23 +226,16 @@ for j=48%1:96
         C_tilda=Ldirection(c_old);
      
         Jall(i) = pars.J;
-        
-    
-        %diff_is=norm((paras.omega' + 2*paras.alpha*tC))
         pars.c0=beta*c_old+(1-beta)*C_tilda;
     
     
-    
-        
-        
-     
     if flag ==1
         break;
     end
     sprintf("This is norm of c_old-c0 %d",norm(pars.c0-c_old))
     JT=pars.JT;
     sprintf("This is del J norm %d",norm(JT))
-    if norm(pars.c0-c_old)<1.e-11 || norm(JT)<1.e-4
+    if norm(pars.c0-c_old)<1.e-9
         disp('The optimizer is obtained.')
         break;
     end
@@ -256,8 +247,9 @@ for j=48%1:96
 
      
         
-    end
-    sprintf("This is final average value for C %d",pars.weig*pars.c0'/tmax) 
+end
+
+sprintf("This is final average value for C %d",pars.weig*pars.c0'/tmax) 
 
 
 
@@ -286,18 +278,6 @@ for j=48
         i
         c_old = pars.c0;
         
-        if i ==1    
-        figure(90)
-        subplot(2,3,1)
-        plot(pars.tlist,pars.c0)
-        xlabel('t'); ylabel('C_0(t)')
-        xlim([tmin tmax]);
-        ylim([0 max(pars.c0)*1.5]);
-
-	    title(sprintf('alpha = %d',(pars.alpha)))
-        
-        end
-          
       
         C_tilda=Ldirection(c_old);
         if i==1
@@ -305,42 +285,6 @@ for j=48
             this_u_initial=pars.u;   
 	        this_w_initial=pars.w;  
         
-            figure(99); 
-        
-            plot_i = 0;
-            for i2 = 1:round((size(pars.u,2)-1)/3):size(pars.u,2)
-                plot_i = plot_i+1;
-                subplot(2,4,plot_i)
-
-		        time_integral = trapz(pars.tlist(1:i2), pars.u(:, 1:i2), 2);
-                pdeplot(pars.model, 'XYData', time_integral(:));
-                set(gca,'Ydir','reverse')
-                axis off
-                box on; axis tight; axis equal;
-		        colormap('jet');
-                title(['t = ' num2str(pars.tlist(i2))])
-                if plot_i==1
-                    cmax = max(trapz(pars.tlist(1:end), pars.u(:, 1:end), 2))+0.01;
-                    cmin = 0;
-                end
-            clim([cmin cmax])
-            end
-        
-        
-        
-        
-        figure(90);subplot(2,3,2)
-        plot(pars.tlist,pars.u_omega)
-        xlabel('t'); ylabel('\int_{\Omega} u dx')
-        xlim([tmin tmax]);
-        title(['J = ' num2str(pars.J)])
-        
-        figure(90);subplot(2,3,3)
-        plot(pars.tlist,pars.w_omega)
-        xlabel('t'); ylabel('\int_{\Omega} w dx')
-        xlim([tmin tmax]);
-        title(['del J = ' num2str(norm(pars.JT))])
-    
         end
      
         Jall(i) = pars.J;
@@ -358,82 +302,20 @@ for j=48
         JT=pars.JT;
         sprintf("This is del J norm %d",norm(JT))
 
-        if norm(pars.c0-c_old)<1.e-11 || norm(JT)<1.e-4
+        if norm(pars.c0-c_old)<1.e-9
             disp('The optimizer is obtained.')
             break;
         end
 
         sprintf("This is average value for C %d",pars.weig*pars.c0'/tmax) 
     end
-    
-    
-    figure(99); 
-    
-    plot_i = 0;
-    for i = 1:round((size(pars.u,2)-1)/3):size(pars.u,2)
-        plot_i = plot_i+1;
-        subplot(2,4,plot_i+4)
-
-	    colormap('jet');
-		time_integral = trapz(pars.tlist(1:i), pars.u(:, 1:i), 2);
-        pdeplot(pars.model, 'XYData', time_integral(:));
-
-        set(gca,'Ydir','reverse')
-        axis off
-        box on; axis tight; axis equal; 
-        title(['t = ' num2str(pars.tlist(i))])
-        clim([cmin cmax])
-        colormap("jet")
-        winsize = [144.0000  400  720.0000  320.0000];
-            set(gcf,'Position',winsize); 
-            set(gcf, 'PaperPositionMode', 'auto')
-            %fn_name = [mfilename];
-            %fn_eps = [fn_name 'u.eps'];
-            %print(gcf,'-depsc',fn_eps,'-r300');
-            %fn_fig = [fn_name 'u.fig'];
-            fn_name = mfilename;  
-            fn_fig = fullfile(path, [fn_name sprintf('u_nor.fig')]);
-            savefig(fn_fig);      
-        
-    end
+   
     
     sprintf("This is final average value for C %d",pars.weig*pars.c0'/tmax) 
-    figure(90)
-    subplot(2,3,4)
-    plot(pars.tlist,pars.c0)
-    xlabel('t'); ylabel('optimized C(t)')
-    xlim([tmin tmax]);
-    %axis([0 max(pars.tlist) -0.01 pars.A+0.01])
-    title(['alpha = ' num2str(pars.alpha)])
-    
-    figure(90);subplot(2,3,5)
-    plot(pars.tlist,pars.u_omega)
-    xlabel('t'); ylabel('\int_{\Omega} u dx')
-    xlim([tmin tmax]);
-    title(['J = ' num2str(pars.J)])
-      % axis([0 max(pars.tlist) 0.5 0.9])
-     
-    figure(90);subplot(2,3,6)
-    plot(pars.tlist,pars.w_omega)
-    xlabel('t'); ylabel('\int_{\Omega} w dx')
-    xlim([tmin tmax]);
-    title(['del J = ' num2str(norm(pars.JT))])
-    winsize = [144.0000  400  720.0000  480.0000];
-            set(gcf,'Position',winsize); 
-            set(gcf, 'PaperPositionMode', 'auto')
-            %fn_name = [mfilename];
-            %fn_eps = [fn_name '.eps'];
-            %print(gcf,'-depsc',fn_eps,'-r300');
-            %fn_fig = [fn_name '.fig'];
-    
-            fn_name = mfilename;  
-            fn_fig = fullfile(path, [fn_name sprintf('_nor.fig')]);
-            savefig(fn_fig);   
-            fn_name = mfilename;  
-            fn = fullfile(path, [fn_name sprintf('_nor.mat')]);
 
-save(fn, '-v7.3'); 
+    fn_name = mfilename;  
+    fn = fullfile(path, [fn_name sprintf('_avg_data_v%g_nor.mat',svsv)]);
+    save(fn, '-v7.3'); 
 
 end
-
 

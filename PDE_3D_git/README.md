@@ -44,7 +44,7 @@ After running the simulation, the figures in the paper can be generated using th
 **Figure 5**
 
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/plot_sphere.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_3D_git/Figures/plot_sphere.png" width="800">
 </p>
 
 Run:
@@ -58,7 +58,7 @@ plot_sphere.m
 **Figure 6**
 
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/plot_sphere_time.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_3D_git/Figures/plot_sphere_time.png" width="800">
 </p>
 
 Run:
@@ -69,10 +69,15 @@ plot_sphere_with_different_time.m
 
 ---
 
-**Figure 7 and Figure 8**
+**Figure 8 and Figure 9**
+
 
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Compare.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_3D_git/Figures/Integral.png" width="800">
+</p>
+
+<p align="center">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_3D_git/Figures/Compare.png" width="800">
 </p>
 
 Run:

@@ -77,4 +77,4 @@ The parameters defining the PDE model used in the simulation:
 The parameters controlling the numerical iteration and optimization:
 
 - Convergence tolerance: crit_tol = 1e-9
-- Relaxation factor: beta = 0.5
+- Linear Combination Adjoint Method parameter: 0 < beta = 0.5 < 1

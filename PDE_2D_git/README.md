@@ -11,24 +11,57 @@ https://adni.loni.usc.edu/
 
 ## Steps to reproduce
 
-1. Run the simulation
+### 1. Run the simulation
 
-run:
+Run the main simulation script:
 
+```
 Main.m
+```
 
-Running this script reproduces Figure 2 from the paper and executes the core Algorithm.
+This script executes the core algorithm and reproduces **Figure 2** from the paper.
 
 <p align="center">
   <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Mesh.png" width="800">
 </p>
 
+---
 
-2. Generate figures
+### 2. Collect simulation data
 
-run:
+When running simulations for multiple subjects (or multiple datasets), the results are first saved separately.  
+To combine all generated data files into a single dataset, run:
 
+```
+save_all_files.m
+```
+
+This script aggregates the results from multiple runs into one file for further analysis and plotting.
+
+---
+
+### 3. Generate figures
+
+After the data aggregation step, the figures in the paper can be generated as follows:
+
+**Figure 3**
+
+<p align="center">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Integral.png" width="800">
+</p>
+
+```
+plot_integral_results.m
+```
+
+**Figure 4**
+<p align="center">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Compare.png" width="800">
+</p>
+
+```
 plot_results.m
+```
 
 ## Model Parameters
 

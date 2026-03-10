@@ -78,7 +78,7 @@ for j=48%1:96
     
 
     
-   
+    pgon = polyshape(bd1, bd2);
     % Handle potential issues with empty polygons
     if isempty(pgon.Vertices)
         error('Polyshape is empty. Verify the input boundaries.');

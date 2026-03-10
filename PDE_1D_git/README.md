@@ -8,21 +8,22 @@ No external data are required for this example.
 
 ## Steps to reproduce
 
-1. Run the simulation
-
-run:
-
+### 1. Run the simulation
+Run the main simulation script to generate data:
+```
 Main.m
+```
+### 2. Generate figures (Figure 1 in the paper)
+After the data generation step, the figures in the paper can be generated as follows:
 
-2. Generate figures (Figure 1 in the paper)
-
-run:
-
-plot_results.m
-
+**Figure 1**
 <p align="center">
   <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_1D_git/Figure_1.png" width="800">
 </p>
+
+```
+plot_results.m
+```
 
 ## Model Parameters
 

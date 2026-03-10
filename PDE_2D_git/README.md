@@ -17,6 +17,13 @@ run:
 
 Main.m
 
+Running this script reproduces Figure 2 from the paper and executes the core Algorithm.
+
+<p align="center">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Mesh.png" width="800">
+</p>
+
+
 2. Generate figures
 
 run:

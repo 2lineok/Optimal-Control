@@ -44,7 +44,7 @@ After running the simulation, the figures in the paper can be generated using th
 **Figure 5**
 
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_3D_git/Figures/plot_sphere.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_3D_git/Figures/plot_sphere.png.png" width="800">
 </p>
 
 Run:

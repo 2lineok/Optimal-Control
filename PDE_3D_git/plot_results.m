@@ -139,50 +139,23 @@ h = colorbar('Position',[0.92 0.15 0.02 0.7], 'FontSize', 18);
 
 
 
+
 figure;
 
-% --- Left subplot: Average C over time ---
 subplot(1,2,1);
-plot(tgrid, C_avg, 'LineWidth', 1.5,"Color",'b');
-hold on
-plot(tgrid, C_time_or_fun, 'LineWidth', 1.5);
-grid on;
-xlabel('$t$', 'Interpreter','latex');
-ylabel('${C}(t)$', 'Interpreter','latex');
-title('Average Control', 'Interpreter','latex');
-
-% --- Right subplot: C(t) ---
-subplot(1,2,2);
 plot(tgrid, C_time_or_fun, 'LineWidth', 1.5);
 grid on;
 xlabel('$t$', 'Interpreter','latex');
 ylabel('$C^* (t)$', 'Interpreter','latex');
 title('Control Function', 'Interpreter','latex');
 
-sgtitle('Comparison of $C$ Values','Interpreter','latex');
-
-
-
-
-figure;
-
-% --- Left subplot: Average C over time ---
-subplot(1,2,1);
-plot(tgrid, U_int_domain_t, 'LineWidth', 1.5,"Color",'b');
-hold on
-plot(tgrid, U_int_domain_opt_t, 'LineWidth', 1.5);
-grid on;
-xlabel('$t$', 'Interpreter','latex');
-%ylabel('${C}(t)$', 'Interpreter','latex');
-title(sprintf('$\\int_0^t\\int_\\Omega U(x,s) dx ds$'), 'Interpreter','latex');
-
-% --- Right subplot: C(t) ---
 subplot(1,2,2);
-plot(tgrid, U_int_domain_opt_t, 'LineWidth', 1.5);
+plot(tgrid, U_int_domain_t-U_int_domain_opt_t, 'LineWidth', 1.5);
 grid on;
 xlabel('$t$', 'Interpreter','latex');
 %ylabel('$C^* (t)$', 'Interpreter','latex');
-title(sprintf('$\\int_0^t\\int_\\Omega U^*(x,s) dx ds$ '), 'Interpreter','latex');
+title(sprintf('$\\int_0^t\\int_\\Omega U^*(x,s)-U(x,s) dx ds$ '), 'Interpreter','latex');;
+
 
 
 

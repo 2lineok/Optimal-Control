@@ -29,14 +29,14 @@ plot_results.m
 
 The parameters defining the PDE model used in the simulation:
 
-- Diffusion coefficient: D = 0.002
-- Growth rate: ρ = 0.012
-- Regularization parameter: α = 100
-- Maximum simulation time: T = 42
+- Diffusion coefficient: **D = 0.02**
+- Growth rate: **ρ = 0.012**
+- Regularization parameter: **α = 100**
+- Maximum simulation time: **T = 42**
 
 ## Algorithm Parameters
 
 The parameters controlling the numerical iteration and optimization:
 
-- Convergence tolerance: crit_tol = 1e-9
-- Linear Combination Adjoint Method parameter: 0 < beta = 0.5 < 1
+- Convergence tolerance: **crit_tol = 1e-9**
+- Linear Combination Adjoint Method parameter: **β = 0.5 (with 0 < β < 1)**

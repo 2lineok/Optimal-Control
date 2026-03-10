@@ -22,7 +22,7 @@ Main.m
 This script executes the core algorithm and reproduces **Figure 2** from the paper.
 
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Mesh.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Figures/Mesh.png" width="800">
 </p>
 
 ---
@@ -47,7 +47,7 @@ After the data aggregation step, the figures in the paper can be generated as fo
 **Figure 3**
 
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Integral.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Figures/Integral.png" width="800">
 </p>
 
 ```
@@ -56,7 +56,7 @@ plot_integral_results.m
 
 **Figure 4**
 <p align="center">
-  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Compare.png" width="800">
+  <img src="https://github.com/2lineok/Optimal-Control/blob/main/PDE_2D_git/Figures/Compare.png" width="800">
 </p>
 
 ```

@@ -9,6 +9,11 @@ Researchers must obtain access through:
 
 https://adni.loni.usc.edu/
 
+## Run the Data Generation Pipeline
+
+Once you have obtained the raw PET data from ADNI, you need to generate the specific surface datasets used in this experiment. Follow the instructions in the PET_surface_pipeline directory to transform raw ADNI PET scans into the 3D surface format required for this simulation.
+
+
 ## Steps to reproduce
 
 ### 1. Estimate model parameters from data

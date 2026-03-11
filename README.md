@@ -91,23 +91,28 @@ This iterative scheme is guaranteed to converge for sufficiently large $\alpha$.
 AD_PDE_Optimal_Control/
 │
 ├── data/
-│   └── ADNI_PET/                     # PET imaging data (requires ADNI access, we do not provide this data)
+│   └── ADNI_PET/              # Raw PET imaging data (Requires ADNI access)
 │
+├── PET_surface_pipeline/      # 3D surface mesh generation (Run this first for PDE_3D_git example)
+│                              # Source: github.com/2lineok/Optimal-Control/PET_surface_pipeline
 │
 ├── Examples/
-│   ├── 1D_case
-│   ├── 2D_case_with_PET
-│   └── 3D_brain_surface
+│   ├── PDE_1D_git/            # Synthetic 1D test (Does NOT require ADNI data)
+│   ├── PDE_2D_git/            # 2D PET slice analysis (Requires ADNI data)
+│   └── PDE_3D_git/            # 3D brain surface simulation (Requires ADNI + Pipeline output)
+│ 
 │   # Each example follows a similar structure.
-├── README.md            # Instructions for running the code and reproducing figures
-├── Main.m               # Run this first to generate results
-├── plot_results.m       # Visualization script (run after Main)
-├── inverse_problem.m    # Estimates D and ρ used in Main.m only in 3D example
-└── Functions/           # Helper functions
-    ├── solve_u.m        # Solves the state equation
-    ├── solve_w.m        # Solves the adjoint equation
-    └── direction_update.m  # Updates control variable C
+├── README.md                  # Instructions for running the code and reproducing figures
+├── Main.m                     # Run this first to generate results
+├── plot_results.m             # Visualization script (run after Main)
+├── inverse_problem.m          # Estimates D and ρ used in Main.m only in 3D example
+└── Functions/                 # Helper functions
+    ├── solve_u.m              # Solves the state equation
+    ├── solve_w.m              # Solves the adjoint equation
+    └── direction_update.m     # Updates control variable C
 ```
+
+
 
 ---
 
